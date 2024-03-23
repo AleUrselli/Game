@@ -5,6 +5,20 @@ function getComputerChoice() {
   const options = choices[Math.floor(Math.random()* choices.length)];
 return options;
 }
+function getPlayerChoice() { 
+   let validatedInput = false;
+   while (validatedInput == false) {
+    const choice = prompt ('Rock, paper or scissors?');
+    if (choice == null) {
+        continue;
+    }
+    const choiceInLower = choice.toLocaleLowerCase();
+    if (choices.includes(choiceInLower)) {
+        validatedInput = true; 
+        return choiceInLower;
+        }
+     }
+   }
 
 
 function playRound(playerSelection, computerSelection) {
@@ -20,25 +34,20 @@ function playRound(playerSelection, computerSelection) {
         return `You Lose ${computerSelection} beats ${playerSelection}`;
     }
   }
-  function getPlayerChoice() { 
-    const options = prompt('Rock, Paper or Scissors?');
-    if(options.includes(choices)) {
-    choiceInLower = choices.toLocaleLowerCase();
-    return choiceInLower;
-    } else {
-        prompt ('Please type Rock, Paper or Scissors');
-    }
-}
   
-  const playerSelection = getPlayerChoice();
-  const computerSelection = getComputerChoice();
-  console.log(computerSelection)
-  console.log(playRound(playerSelection, computerSelection));
+  /*console.log(playRound(playerSelection, computerSelection));*/
 
   function playGame() {
     for (let i = 0; i < 5; i++) {
+        
+        const playerSelection = getPlayerChoice();
+        const computerSelection = getComputerChoice();
+        console.log(computerSelection)
         console.log(playRound(playerSelection, computerSelection));
     }
   }
+
+  
+
   playGame();
 
